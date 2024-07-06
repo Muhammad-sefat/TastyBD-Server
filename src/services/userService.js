@@ -30,6 +30,19 @@ module.exports = {
       if (!user) {
         throw new Error("User Not Found");
       }
+      return user;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  },
+
+  async findUserById(userId) {
+    try {
+      const user = await User.findById(userId).populate("adresses");
+      if (!user) {
+        throw new Error("User Not Found");
+      }
+      return user;
     } catch (error) {
       throw new Error(error.message);
     }
